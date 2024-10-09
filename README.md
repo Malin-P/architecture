@@ -23,7 +23,7 @@ To run this project locally, follow these steps:
    - Download the project as a ZIP file from GitHub, then extract it.
    - Or clone the repository using Git:
      ```bash
-     git clone https://github.com/yourusername/your-repository-name.git
+     git clone https://github.com/Malin-P/architecture.git
      ```
 
 2. **Open the Project**:
