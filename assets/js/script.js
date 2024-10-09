@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         anime({
           targets: letter,
           translateY: [100, 0], // Move from below to original position
-          opacity: [0, 0.7], // Fade in from invisible to slightly transparent
+          opacity: [0, 1], // Fade in from invisible to slightly transparent
           scale: [0.5, 1], // Scale up from smaller size
           duration: 600, // Animation duration
           delay: index * 100, // Stagger animation based on index
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         anime({
           targets: letter,
           translateY: [100, 0], // Move from below to original position
-          opacity: [0, 0.7], // Fade in from invisible to slightly transparent
+          opacity: [0, 1], // Fade in from invisible to slightly transparent
           scale: [0.5, 1], // Scale up from smaller size
           duration: 600, // Animation duration
           delay: index * 100, // Stagger animation based on index
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       anime({
         targets: letter,
         translateY: [100, 0], // Move from below to original position
-        opacity: [0, 0.7], // Fade in from invisible to slightly transparent
+        opacity: [0, 1], // Fade in from invisible to slightly transparent
         scale: [0.5, 1], // Scale up from smaller size
         duration: 1000, // Animation duration
         delay: delay, // Stagger animation based on index for center-out effect

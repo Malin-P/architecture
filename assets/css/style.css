@@ -686,6 +686,11 @@ nav ul li a.active::after {
   font-weight: 300;
 }
 
+.nav-contents.gallery-title h2 {
+  display: flex;
+  padding-left: 5dvw;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
