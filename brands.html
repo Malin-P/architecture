@@ -721,11 +721,15 @@
           pageDots: false,
           selectedAttraction: 0.025,
           friction: 0.8,
-          autoPlay: false,
+          autoPlay: true,
           groupCells: true,
           adaptiveHeight: false,
         });
-
+        var flkty = $carousel4.data("flickity");
+        flkty.on("dragEnd", function () {
+          console.log("Autoplay resumed after drag");
+          flkty.player.play();
+        });
         // Set total slides count
         var totalSlides4 = $(".brand-bottom-section .carousel-cell").length;
         $("#totalSlides4").text(flickityFormatNumber4(totalSlides4));

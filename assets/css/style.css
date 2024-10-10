@@ -190,6 +190,11 @@ button {
   font-size: clamp(1.2rem, 1.5dvw, 1.5dvw);
   position: relative;
   left: 27dvw;
+  transition: font-size 0.3s ease;
+}
+.banner-section .grid-parent .right-sec + .bottom-sec a:hover {
+  font-size: 1.4rem;
+  color: #000;
 }
 
 .title-container {
@@ -217,6 +222,10 @@ button {
   padding-bottom: 1px;
   text-decoration: none;
   border-bottom: 1px solid #c9c9b6;
+  transition: scale 0.3s ease;
+}
+.gallery-section .title-container a:hover {
+  transform: scale(1.08);
 }
 .gallery-section .image-stack-container {
   display: grid;
@@ -311,10 +320,16 @@ button {
   position: relative;
   width: 100%;
   display: flex;
+  overflow: hidden;
 }
 .most-visited-section .grid-container .child-container:first-child .img-container img {
   width: 100%;
   flex: 1;
+  transition: all 2s ease-in;
+}
+.most-visited-section .grid-container .child-container:first-child .img-container img:hover {
+  webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 .most-visited-section .grid-container .child-container:first-child .img-container h4 {
   position: absolute;
@@ -332,6 +347,7 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  overflow: hidden;
 }
 .most-visited-section .grid-container .child-container:last-child .content {
   position: absolute;
@@ -365,11 +381,21 @@ button {
   display: block;
   border-top: 1px solid rgba(255, 255, 255, 0.33);
   border-bottom: 1px solid rgba(255, 255, 255, 0.33);
+  transition: all 0.5s ease;
+}
+.most-visited-section .grid-container .child-container:last-child .content a:hover {
+  transform: translateY(-10px);
+  background: rgba(0, 0, 0, 0.06);
 }
 .most-visited-section .grid-container .child-container:last-child img {
   width: 100%;
   flex: 1;
   height: 100%;
+  transition: all 5s ease-in;
+}
+.most-visited-section .grid-container .child-container:last-child img:hover {
+  webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .competitions-section {
@@ -1545,6 +1571,10 @@ nav ul li a.active::after {
 .images-big-carousel .carousel-container .main-carousel2 .carousel-cell img {
   width: 100%;
   height: auto;
+  transition: all 5s ease-in;
+}
+.images-big-carousel .carousel-container .main-carousel2 .carousel-cell img:hover {
+  transform: scale(1.1);
 }
 .images-big-carousel .carousel-container .main-carousel2 .carousel-cell .title {
   position: absolute;
