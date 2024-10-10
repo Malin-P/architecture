@@ -275,7 +275,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="assets/js/script.js" defer></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script
+      src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
+      defer></script>
     <script>
       $(document).ready(function () {
         // Initialize Flickity
@@ -284,6 +286,7 @@
           contain: true, // Contain cells within the carousel
           wrapAround: true, // Loop through cells
           autoPlay: 2000, // Autoplay every 2 seconds
+          percentPosition: false,
           groupCells: false, // Ensure only one cell is shown at a time
           prevNextButtons: true, // Show previous/next buttons
           pageDots: false, // Hide dots

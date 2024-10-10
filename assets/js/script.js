@@ -360,14 +360,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        anime({
-          targets: entry.target,
-          opacity: [0, 1],
-          scale: [0.9, 1],
-          translateX: [100, 0],
-          duration: 2500,
-          easing: "easeOutCirc",
-        });
+        // Target the second child (card-child: second)
+        if (entry.target === cards[1]) {
+          anime({
+            targets: entry.target,
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            translateX: [100, 0],
+            duration: 2500,
+            easing: "easeOutCirc",
+          });
+        }
+
+        // Target the first child (card-child: first) with added translateY to simulate "coming from under"
+        if (entry.target === cards[0]) {
+          anime({
+            targets: entry.target,
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            translateX: [200, 0],
+            translateY: [10, 0], // Adjust translateY to move the first child down and then back up
+            duration: 3000,
+            easing: "easeOutCirc",
+            delay: 500, // Delay the first card's animation by 500ms
+          });
+        }
+
         observer.unobserve(entry.target);
       }
     });

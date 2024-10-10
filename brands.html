@@ -21,7 +21,7 @@
       <div class="search-container mt">
         <input type="text" placeholder="SEARCH  ART" />
         <a href="javascript:void(0);" class="interactive">Profile</a>
-        <a href="javascript:void(0);">Registration</a>
+        <a href="javascript:void(0);" class="interactive">Registration</a>
       </div>
       <nav>
         <ul>
@@ -196,10 +196,18 @@
     </section>
     <section class="brand-collage-carousel">
       <div class="grid-parent">
-        <img src="assets/images/brand_collage1.jpg" alt="" />
-        <img src="assets/images/brand_collage2.jpg" alt="" />
-        <img src="assets/images/brand_collage3.jpg" alt="" />
-        <img src="assets/images/brand_collage4.jpg" alt="" />
+        <span>
+          <img src="assets/images/brand_collage1.jpg" alt="" />
+        </span>
+        <span>
+          <img src="assets/images/brand_collage2.jpg" alt="" />
+        </span>
+        <span>
+          <img src="assets/images/brand_collage3.jpg" alt="" />
+        </span>
+        <span>
+          <img src="assets/images/brand_collage4.jpg" alt="" />
+        </span>
         <div class="images-big-carousel">
           <div class="carousel-container">
             <div class="main-carousel2 collage-carousel">
@@ -602,7 +610,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="assets/js/script.js" defer></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script
+      src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
+      defer></script>
     <script>
       $(document).ready(function () {
         // Initialize Flickity
@@ -610,6 +620,7 @@
           cellAlign: "left",
           wrapAround: true,
           contain: true,
+          percentPosition: false,
           prevNextButtons: true,
           pageDots: false,
           selectedAttraction: 0.025,
@@ -660,6 +671,7 @@
           prevNextButtons: true,
           pageDots: false,
           selectedAttraction: 0.025,
+          percentPosition: false,
           friction: 0.8,
           autoPlay: false,
           groupCells: true,
@@ -705,6 +717,7 @@
           wrapAround: true,
           contain: true,
           prevNextButtons: true,
+          percentPosition: false,
           pageDots: false,
           selectedAttraction: 0.025,
           friction: 0.8,

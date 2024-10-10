@@ -390,7 +390,8 @@ button {
 .competitions-section .accordion-item {
   flex: 1;
   background-color: #333; /* Default solid background color */
-  transition: flex 0.5s ease, background-image 0.5s ease, background-color 0.5s ease, font-size 0.5s ease;
+  transition: flex 0.8s ease, background-image 0.3s ease, background-color 0.3s ease, font-size 0.3s ease;
+  will-change: flex, background-image, background-color, font-size;
   position: relative;
   cursor: pointer;
   display: flex;
@@ -1466,8 +1467,27 @@ nav ul li a.active::after {
   color: #a14135;
   font-weight: 300;
   padding: 7px 30px;
-  width: -moz-fit-content;
-  width: fit-content;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Smooth transition for transform, border-color, and color */
+}
+.carousel-image-section .image-section .text-container button:hover {
+  transform: translateY(-0.25em); /* Move button up on hover */
+  border-color: #a14135;
+  color: #a14135;
+}
+.carousel-image-section .image-section .text-container button:hover::before {
+  opacity: 1; /* Show the before pseudo-element on hover */
+}
+.carousel-image-section .image-section .text-container button::before {
+  width: 100%;
+  height: 1em;
+  position: absolute;
+  left: 0;
+  bottom: -1.35em;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.65s; /* Only change opacity smoothly */
+  content: "";
 }
 
 .images-stack-section {
@@ -1502,6 +1522,9 @@ nav ul li a.active::after {
 .images-stack-section .parent-container img {
   width: 100%;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.images-stack-section .parent-container img:hover {
+  transform: scale(1.1);
 }
 .images-stack-section .parent-container.grid-container {
   display: grid;
@@ -1799,8 +1822,15 @@ nav ul li a.active::after {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.brand-collage-carousel .grid-parent span {
+  overflow: hidden;
+}
 .brand-collage-carousel .grid-parent img {
   width: 100%;
+  transition: transform 0.5s ease;
+}
+.brand-collage-carousel .grid-parent img:hover {
+  transform: scale(1.1);
 }
 .brand-collage-carousel .grid-parent .images-big-carousel {
   grid-column: span 2;

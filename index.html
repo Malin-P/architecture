@@ -276,13 +276,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="assets/js/script.js" defer></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script
+      src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
+      defer></script>
     <script>
       $(document).ready(function () {
         var flkty = new Flickity(".main-carousel", {
           cellAlign: "center",
           contain: true,
           wrapAround: true,
+          percentPosition: false,
           autoPlay: 3000,
           groupCells: 1,
           prevNextButtons: false,
