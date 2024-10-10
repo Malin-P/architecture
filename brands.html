@@ -710,52 +710,54 @@
       });
     </script>
     <script>
-      $(document).ready(function () {
-        // Initialize Flickity
-        var $carousel4 = $(".carousel-big").flickity({
-          cellAlign: "left",
-          wrapAround: true,
-          contain: true,
-          prevNextButtons: true,
-          percentPosition: false,
-          pageDots: false,
-          selectedAttraction: 0.025,
-          friction: 0.8,
-          autoPlay: true,
-          groupCells: true,
-          adaptiveHeight: false,
-        });
-        var flkty = $carousel4.data("flickity");
-        flkty.on("dragEnd", function () {
-          console.log("Autoplay resumed after drag");
-          flkty.player.play();
-        });
-        // Set total slides count
-        var totalSlides4 = $(".brand-bottom-section .carousel-cell").length;
-        $("#totalSlides4").text(flickityFormatNumber4(totalSlides4));
+      window.onload = function () {
+        $(document).ready(function () {
+          // Initialize Flickity
+          var $carousel4 = $(".carousel-big").flickity({
+            cellAlign: "left",
+            wrapAround: true,
+            contain: true,
+            prevNextButtons: true,
+            percentPosition: false,
+            pageDots: false,
+            selectedAttraction: 0.025,
+            friction: 0.8,
+            autoPlay: true,
+            groupCells: true,
+            adaptiveHeight: false,
+          });
+          var flkty = $carousel4.data("flickity");
+          flkty.on("dragEnd", function () {
+            console.log("Autoplay resumed after drag");
+            flkty.player.play();
+          });
+          // Set total slides count
+          var totalSlides4 = $(".brand-bottom-section .carousel-cell").length;
+          $("#totalSlides4").text(flickityFormatNumber4(totalSlides4));
 
-        // Start slide from 2 for aesthetic purposes
-        updateCurrentSlide4();
+          // Start slide from 2 for aesthetic purposes
+          updateCurrentSlide4();
 
-        // Update current slide on slide change
-        $carousel4.on("select.flickity", updateCurrentSlide4);
+          // Update current slide on slide change
+          $carousel4.on("select.flickity", updateCurrentSlide4);
 
-        function updateCurrentSlide4() {
-          var flkty4 = $carousel4.data("flickity"); // Correctly use $carousel3
-          var currentSlide4 = flkty4.selectedIndex + 2; // Start from 2 instead of 1
+          function updateCurrentSlide4() {
+            var flkty4 = $carousel4.data("flickity"); // Correctly use $carousel3
+            var currentSlide4 = flkty4.selectedIndex + 2; // Start from 2 instead of 1
 
-          // Ensure the number doesn't exceed the total slides
-          if (currentSlide4 > totalSlides4) {
-            currentSlide4 = currentSlide4 - totalSlides4; // Wrap around if it exceeds
+            // Ensure the number doesn't exceed the total slides
+            if (currentSlide4 > totalSlides4) {
+              currentSlide4 = currentSlide4 - totalSlides4; // Wrap around if it exceeds
+            }
+
+            $("#currentSlide4").text(flickityFormatNumber4(currentSlide4));
           }
 
-          $("#currentSlide4").text(flickityFormatNumber4(currentSlide4));
-        }
-
-        function flickityFormatNumber4(num) {
-          return num < 10 ? "0" + num : num;
-        }
-      });
+          function flickityFormatNumber4(num) {
+            return num < 10 ? "0" + num : num;
+          }
+        });
+      };
     </script>
   </body>
 </html>
