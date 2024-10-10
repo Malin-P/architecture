@@ -280,24 +280,26 @@
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
     <script>
-      $(document).ready(function () {
-        var flkty = new Flickity(".main-carousel", {
-          cellAlign: "center",
-          contain: true,
-          wrapAround: true,
-          percentPosition: false,
-          autoPlay: 3000,
-          groupCells: 1,
-          prevNextButtons: false,
-          pageDots: true,
-        });
+      window.onload = function () {
+        $(document).ready(function () {
+          var flkty = new Flickity(".main-carousel", {
+            cellAlign: "center",
+            contain: true,
+            wrapAround: true,
+            percentPosition: false,
+            autoPlay: 3000,
+            groupCells: 1,
+            prevNextButtons: false,
+            pageDots: true,
+          });
 
-        // Event handler for dragEnd
-        flkty.on("dragEnd", function () {
-          console.log("Autoplay resumed after drag");
-          flkty.player.play();
+          // Event handler for dragEnd
+          flkty.on("dragEnd", function () {
+            console.log("Autoplay resumed after drag");
+            flkty.player.play();
+          });
         });
-      });
+      };
     </script>
   </body>
 </html>
