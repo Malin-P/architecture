@@ -274,8 +274,8 @@
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
     <script>
-      window.onload = function () {
-        $(document).ready(function () {
+      $(document).ready(function () {
+        window.requestAnimationFrame(function () {
           var flkty = new Flickity(".main-carousel", {
             cellAlign: "center",
             contain: true,
@@ -295,7 +295,7 @@
             flkty.player.play();
           });
         });
-      };
+      });
     </script>
   </body>
 </html>
