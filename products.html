@@ -10,12 +10,6 @@
       href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
   </head>
   <body>
-    <!-- Loading Screen with backdrop -->
-    <!-- <div id="loadingScreen">
-      <div class="overlay"></div>
-      <div class="spinner"></div>
-      <p>Loading...</p>
-    </div> -->
     <div class="cursor"></div>
     <section class="project-banner-section">
       <div class="search-container mt">
@@ -279,22 +273,22 @@
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
     <script>
-      window.onload = function () {
-        $(document).ready(function () {
+      $(document).ready(function () {
+        window.requestAnimationFrame(function () {
           // Initialize Flickity
           var $carousel = $(".main-carousel").flickity({
             cellAlign: "center", // Align cells to center
             contain: true, // Contain cells within the carousel
             wrapAround: true, // Loop through cells
-            autoPlay: 2000, // Autoplay every 2 seconds
+            autoPlay: 3000, // Autoplay every 2 seconds
             percentPosition: false,
             groupCells: false, // Ensure only one cell is shown at a time
             prevNextButtons: true, // Show previous/next buttons
             pageDots: false, // Hide dots
             dragThreshold: 3, // Threshold for dragging
-            friction: 0.8, // Friction of the carousel movement
             freeScroll: false, // Disable free scroll
-            selectedAttraction: 0.025, // Attraction to the selected cell
+            selectedAttraction: 0.006,
+            friction: 0.1,
           });
 
           // Autoplay resume after dragging ends
@@ -319,7 +313,7 @@
             return num < 10 ? "0" + num : num.toString();
           }
         });
-      };
+      });
     </script>
   </body>
 </html>

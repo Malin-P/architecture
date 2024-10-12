@@ -157,7 +157,7 @@ button {
           font-size: clamp(1.2rem, 3dvw, 3dvw);
           a {
             color: #f5f5dc;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
             &:hover {
               color: #ffffff;
               padding-left: 12px;
@@ -311,6 +311,7 @@ button {
         width: 100%;
         display: flex;
         overflow: hidden;
+        opacity: 0;
         img {
           width: 100%;
           flex: 1;
@@ -338,6 +339,7 @@ button {
       justify-content: center;
       align-items: center;
       flex-direction: row;
+      opacity: 0;
       overflow: hidden;
       .content {
         position: absolute;
@@ -406,7 +408,7 @@ button {
   .accordion-item {
     flex: 1;
     background-color: #333; /* Default solid background color */
-    transition: flex 0.8s ease, background-image 0.3s ease,
+    transition: flex 2.5s ease, background-image 0.3s ease,
       background-color 0.3s ease, font-size 0.3s ease;
     will-change: flex, background-image, background-color, font-size;
     position: relative;
@@ -776,7 +778,7 @@ nav {
     }
     img {
       width: 100%;
-      transition: transform 0.5s ease;
+      transition: transform 5s ease;
     }
     span {
       position: absolute;

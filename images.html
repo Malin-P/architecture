@@ -13,12 +13,6 @@
       href="https://unpkg.com/swiper@7.0.6/swiper-bundle.min.css" />
   </head>
   <body>
-    <!-- Loading Screen with backdrop -->
-    <!-- <div id="loadingScreen">
-      <div class="overlay"></div>
-      <div class="spinner"></div>
-      <p>Loading...</p>
-    </div> -->
     <div class="cursor"></div>
     <section class="project-banner-section">
       <div class="search-container mt">
@@ -428,6 +422,8 @@
             modifier: 0.5,
             slideShadows: false,
           },
+          speed: 2000, // 2 seconds for a smooth transition
+          easing: "ease-in-out", // Smooth easing effect
           navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
@@ -474,9 +470,9 @@
     </script>
 
     <script>
-      window.onload = function () {
-        $(document).ready(function () {
-          // Initialize Flickity
+      $(document).ready(function () {
+        window.requestAnimationFrame(function () {
+          // Initialize Flickity once DOM is fully rendered
           var $carousel = $(".main-carousel").flickity({
             cellAlign: "left",
             wrapAround: true,
@@ -484,14 +480,16 @@
             prevNextButtons: true,
             percentPosition: false,
             pageDots: false,
-            selectedAttraction: 0.025,
-            friction: 0.8,
-            autoPlay: true,
+            selectedAttraction: 0.002,
+            friction: 0.08,
+            autoPlay: 5000,
             groupCells: true,
             adaptiveHeight: false,
           });
-          // Set total slides count
+
+          // Set total slides count and other functionality
           var flkty = $carousel.data("flickity");
+
           flkty.on("dragEnd", function () {
             console.log("Autoplay resumed after drag");
             flkty.player.play();
@@ -507,9 +505,8 @@
             var flkty2 = $carousel.data("flickity");
             var currentSlide2 = flkty2.selectedIndex + 2; // Start from 2 instead of 1
 
-            // Ensure the number doesn't exceed the total slides
             if (currentSlide2 > totalSlides) {
-              currentSlide2 = currentSlide2 - totalSlides; // Wrap around if it exceeds
+              currentSlide2 = currentSlide2 - totalSlides;
             }
 
             $("#currentSlide").text(flickityFormatNumber(currentSlide2));
@@ -519,12 +516,12 @@
             return num < 10 ? "0" + num : num;
           }
         });
-      };
+      });
     </script>
 
     <script>
-      window.onload = function () {
-        $(document).ready(function () {
+      $(document).ready(function () {
+        window.requestAnimationFrame(function () {
           // Initialize Flickity
           var $carousel = $(".main-carousel2").flickity({
             cellAlign: "left",
@@ -533,9 +530,9 @@
             prevNextButtons: true,
             pageDots: false,
             percentPosition: false,
-            selectedAttraction: 0.025,
-            friction: 0.8,
-            autoPlay: true,
+            selectedAttraction: 0.002,
+            friction: 0.08,
+            autoPlay: 5000,
             groupCells: true,
             adaptiveHeight: false,
           });
@@ -570,7 +567,7 @@
             return num < 10 ? "0" + num : num;
           }
         });
-      };
+      });
     </script>
   </body>
 </html>

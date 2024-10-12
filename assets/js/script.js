@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animateNavText();
   animateNavBorders();
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   // Smooth Staggered Animations for Grid Containers
   const initSmoothStaggeredAnimations = () => {
@@ -186,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.35 }
   );
   sectionObserver.observe(targetSection);
 });
@@ -194,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Script is running after DOM is loaded");
 
-  // Log the count-up elements to check if they are being selected correctly
   const countUpElements = document.querySelectorAll(".count-up");
   console.log("Count-up elements:", countUpElements); // Log the selected elements
 
@@ -203,13 +203,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const animateCount = (element, finalCount) => {
     let start = null;
-    const duration = 1500;
-    const easeOutExpo = (x) => 1 - Math.pow(2, -10 * x);
+    const duration = 3000; // Increase duration for a slower transition
+    const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3); // Smooth easing function
 
     const updateCount = (timestamp) => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      const currentCount = Math.floor(easeOutExpo(progress) * finalCount);
+      const currentCount = Math.floor(easeOutCubic(progress) * finalCount);
       element.textContent = formatNumber(currentCount) + "+";
 
       if (progress < 1) {
@@ -244,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(el);
   });
 });
+
 ///
 
 document.addEventListener("DOMContentLoaded", function () {

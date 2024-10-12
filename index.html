@@ -10,12 +10,6 @@
       href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
   </head>
   <body>
-    <!-- Loading Screen with backdrop -->
-    <!-- <div id="loadingScreen">
-      <div class="overlay"></div>
-      <div class="spinner"></div>
-      <p>Loading...</p>
-    </div> -->
     <div class="cursor"></div>
     <section class="banner-section">
       <h1>ARCHITECTURE</h1>
@@ -275,7 +269,7 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/script.js"></script>
     <script
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
@@ -287,10 +281,12 @@
             contain: true,
             wrapAround: true,
             percentPosition: false,
-            autoPlay: 3000,
+            autoPlay: 5000,
             groupCells: 1,
             prevNextButtons: false,
             pageDots: true,
+            selectedAttraction: 0.002,
+            friction: 0.08,
           });
 
           // Event handler for dragEnd

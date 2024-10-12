@@ -165,7 +165,7 @@ button {
 }
 .banner-section .grid-parent .right-sec ul li a {
   color: #f5f5dc;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 .banner-section .grid-parent .right-sec ul li a:hover {
   color: #ffffff;
@@ -321,6 +321,7 @@ button {
   width: 100%;
   display: flex;
   overflow: hidden;
+  opacity: 0;
 }
 .most-visited-section .grid-container .child-container:first-child .img-container img {
   width: 100%;
@@ -347,6 +348,7 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  opacity: 0;
   overflow: hidden;
 }
 .most-visited-section .grid-container .child-container:last-child .content {
@@ -416,7 +418,7 @@ button {
 .competitions-section .accordion-item {
   flex: 1;
   background-color: #333; /* Default solid background color */
-  transition: flex 0.8s ease, background-image 0.3s ease, background-color 0.3s ease, font-size 0.3s ease;
+  transition: flex 2.5s ease, background-image 0.3s ease, background-color 0.3s ease, font-size 0.3s ease;
   will-change: flex, background-image, background-color, font-size;
   position: relative;
   cursor: pointer;
@@ -764,7 +766,7 @@ nav ul li a.active::after {
 }
 .project-mid-section .image-body img {
   width: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 5s ease;
 }
 .project-mid-section .image-body span {
   position: absolute;
