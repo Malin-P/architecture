@@ -470,104 +470,102 @@
     </script>
 
     <script>
-      $(document).ready(function () {
-        window.requestAnimationFrame(function () {
-          // Initialize Flickity once DOM is fully rendered
-          var $carousel = $(".main-carousel").flickity({
-            cellAlign: "left",
-            wrapAround: true,
-            contain: true,
-            prevNextButtons: true,
-            percentPosition: false,
-            pageDots: false,
-            selectedAttraction: 0.002,
-            friction: 0.08,
-            autoPlay: 5000,
-            groupCells: true,
-            adaptiveHeight: true,
-          });
-
-          // Set total slides count and other functionality
-          var flkty = $carousel.data("flickity");
-
-          flkty.on("dragEnd", function () {
-            console.log("Autoplay resumed after drag");
-            flkty.player.play();
-          });
-
-          var totalSlides = $carousel.find(".carousel-cell").length;
-          $("#totalSlides").text(flickityFormatNumber(totalSlides));
-          updateCurrentSlide2();
-
-          $carousel.on("select.flickity", updateCurrentSlide2);
-
-          function updateCurrentSlide2() {
-            var flkty2 = $carousel.data("flickity");
-            var currentSlide2 = flkty2.selectedIndex + 2; // Start from 2 instead of 1
-
-            if (currentSlide2 > totalSlides) {
-              currentSlide2 = currentSlide2 - totalSlides;
-            }
-
-            $("#currentSlide").text(flickityFormatNumber(currentSlide2));
-          }
-
-          function flickityFormatNumber(num) {
-            return num < 10 ? "0" + num : num;
-          }
+      window.onload = function () {
+        // Initialize Flickity once DOM is fully rendered
+        var $carousel = $(".main-carousel").flickity({
+          cellAlign: "left",
+          wrapAround: true,
+          contain: true,
+          prevNextButtons: true,
+          percentPosition: false,
+          pageDots: false,
+          selectedAttraction: 0.002,
+          friction: 0.08,
+          autoPlay: 5000,
+          groupCells: true,
+          adaptiveHeight: true,
         });
-      });
+        setTimeout(function () {
+          $carousel.flickity("resize");
+        }, 100);
+
+        // Set total slides count and other functionality
+        var flkty = $carousel.data("flickity");
+        flkty.on("dragEnd", function () {
+          console.log("Autoplay resumed after drag");
+          flkty.player.play();
+        });
+
+        var totalSlides = $carousel.find(".carousel-cell").length;
+        $("#totalSlides").text(flickityFormatNumber(totalSlides));
+        updateCurrentSlide2();
+
+        $carousel.on("select.flickity", updateCurrentSlide2);
+
+        function updateCurrentSlide2() {
+          var flkty2 = $carousel.data("flickity");
+          var currentSlide2 = flkty2.selectedIndex + 2; // Start from 2 instead of 1
+
+          if (currentSlide2 > totalSlides) {
+            currentSlide2 = currentSlide2 - totalSlides;
+          }
+
+          $("#currentSlide").text(flickityFormatNumber(currentSlide2));
+        }
+
+        function flickityFormatNumber(num) {
+          return num < 10 ? "0" + num : num;
+        }
+      };
     </script>
 
     <script>
-      $(document).ready(function () {
-        window.requestAnimationFrame(function () {
-          // Initialize Flickity
-          var $carousel = $(".main-carousel2").flickity({
-            cellAlign: "left",
-            wrapAround: true,
-            contain: true,
-            prevNextButtons: true,
-            pageDots: false,
-            percentPosition: false,
-            selectedAttraction: 0.002,
-            friction: 0.08,
-            autoPlay: 5000,
-            groupCells: true,
-            adaptiveHeight: true,
-          });
-          var flkty = $carousel.data("flickity");
-          flkty.on("dragEnd", function () {
-            console.log("Autoplay resumed after drag");
-            flkty.player.play();
-          });
-          // Set total slides count
-          var totalSlides = $carousel.find(".carousel-cell").length;
-          $("#totalSlides2").text(flickityFormatNumber(totalSlides));
-
-          // Start slide from 2 for aesthetic purposes
-          updateCurrentSlide2();
-
-          // Update current slide on slide change
-          $carousel.on("select.flickity", updateCurrentSlide2);
-
-          function updateCurrentSlide2() {
-            var flkty = $carousel.data("flickity");
-            var currentSlide = flkty.selectedIndex + 2; // Start from 2 instead of 1
-
-            // Ensure the number doesn't exceed the total slides
-            if (currentSlide > totalSlides) {
-              currentSlide = currentSlide - totalSlides; // Wrap around if it exceeds
-            }
-
-            $("#currentSlide2").text(flickityFormatNumber(currentSlide));
-          }
-
-          function flickityFormatNumber(num) {
-            return num < 10 ? "0" + num : num;
-          }
+      window.onload = function () {
+        // Initialize Flickity
+        var $carousel = $(".main-carousel2").flickity({
+          cellAlign: "left",
+          wrapAround: true,
+          contain: true,
+          prevNextButtons: true,
+          pageDots: false,
+          percentPosition: false,
+          selectedAttraction: 0.002,
+          friction: 0.08,
+          autoPlay: 5000,
+          groupCells: true,
+          adaptiveHeight: true,
         });
-      });
+        var flkty = $carousel.data("flickity");
+        flkty.on("dragEnd", function () {
+          console.log("Autoplay resumed after drag");
+          flkty.player.play();
+        });
+        // Set total slides count
+        var totalSlides = $carousel.find(".carousel-cell").length;
+        $("#totalSlides2").text(flickityFormatNumber(totalSlides));
+
+        // Start slide from 2 for aesthetic purposes
+        updateCurrentSlide2();
+
+        // Update current slide on slide change
+        $carousel.on("select.flickity", updateCurrentSlide2);
+
+        function updateCurrentSlide2() {
+          var flkty = $carousel.data("flickity");
+          var currentSlide = flkty.selectedIndex + 2; // Start from 2 instead of 1
+
+          // Ensure the number doesn't exceed the total slides
+          if (currentSlide > totalSlides) {
+            currentSlide = currentSlide - totalSlides; // Wrap around if it exceeds
+          }
+
+          $("#currentSlide2").text(flickityFormatNumber(currentSlide));
+        }
+
+        function flickityFormatNumber(num) {
+          return num < 10 ? "0" + num : num;
+        }
+      };
     </script>
   </body>
 </html>
