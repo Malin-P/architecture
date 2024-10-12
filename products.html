@@ -273,7 +273,7 @@
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         //  Initialize Flickity
         var $carousel = $(".main-carousel").flickity({
           cellAlign: "center", // Align cells to center
@@ -313,7 +313,7 @@
         function formatNumber(num) {
           return num < 10 ? "0" + num : num.toString();
         }
-      };
+      });
     </script>
   </body>
 </html>

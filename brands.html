@@ -608,7 +608,7 @@
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         // Initialize Flickity
         var $carousel = $(".main-carousel2").flickity({
           cellAlign: "left",
@@ -623,14 +623,14 @@
           groupCells: true,
           adaptiveHeight: true,
         });
+        setTimeout(function () {
+          $carousel.flickity("resize");
+        }, 100);
         var flkty = $carousel.data("flickity");
         flkty.on("dragEnd", function () {
           console.log("Autoplay resumed after drag");
           flkty.player.play();
         });
-        setTimeout(function () {
-          $carousel.flickity("resize");
-        }, 100);
 
         // Set total slides count
         var totalSlides = $(".brand-top-section .carousel-cell").length;
@@ -657,10 +657,10 @@
         function flickityFormatNumber(num) {
           return num < 10 ? "0" + num : num;
         }
-      };
+      });
     </script>
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         // Initialize Flickity
         var $carousel3 = $(".collage-carousel").flickity({
           cellAlign: "left",
@@ -709,10 +709,10 @@
         function flickityFormatNumber3(num) {
           return num < 10 ? "0" + num : num;
         }
-      };
+      });
     </script>
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         // Initialize Flickity
         var $carousel4 = $(".carousel-big").flickity({
           cellAlign: "left",
@@ -761,7 +761,7 @@
         function flickityFormatNumber4(num) {
           return num < 10 ? "0" + num : num;
         }
-      };
+      });
     </script>
   </body>
 </html>

@@ -274,7 +274,7 @@
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         var flkty = new Flickity(".main-carousel", {
           cellAlign: "center",
           contain: true,
@@ -296,7 +296,7 @@
           console.log("Autoplay resumed after drag");
           flkty.player.play();
         });
-      };
+      });
     </script>
   </body>
 </html>

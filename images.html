@@ -470,7 +470,7 @@
     </script>
 
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         // Initialize Flickity once DOM is fully rendered
         var $carousel = $(".main-carousel").flickity({
           cellAlign: "left",
@@ -516,11 +516,11 @@
         function flickityFormatNumber(num) {
           return num < 10 ? "0" + num : num;
         }
-      };
+      });
     </script>
 
     <script>
-      window.onload = function () {
+      window.addEventListener("load", function () {
         // Initialize Flickity
         var $carousel = $(".main-carousel2").flickity({
           cellAlign: "left",
@@ -565,7 +565,7 @@
         function flickityFormatNumber(num) {
           return num < 10 ? "0" + num : num;
         }
-      };
+      });
     </script>
   </body>
 </html>
