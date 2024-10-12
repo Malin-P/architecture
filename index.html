@@ -269,34 +269,9 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="assets/js/script.js"></script>
     <script
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
-    <script>
-      window.addEventListener("load", function () {
-        var flkty = new Flickity(".main-carousel", {
-          cellAlign: "center",
-          contain: true,
-          wrapAround: true,
-          percentPosition: false,
-          autoPlay: 5000,
-          groupCells: 1,
-          prevNextButtons: false,
-          pageDots: true,
-          selectedAttraction: 0.002,
-          friction: 0.08,
-        });
-        setTimeout(function () {
-          flkty.flickity("resize");
-        }, 100);
-
-        // Event handler for dragEnd
-        flkty.on("dragEnd", function () {
-          console.log("Autoplay resumed after drag");
-          flkty.player.play();
-        });
-      });
-    </script>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>

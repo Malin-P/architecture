@@ -646,3 +646,378 @@ document.addEventListener("DOMContentLoaded", () => {
     observerVerticalText.observe(targetElementVerticalText);
   }
 });
+//!index page carousel
+
+window.addEventListener("load", function () {
+  var flkty = $("main-carousel").flickity({
+    cellAlign: "center",
+    contain: true,
+    wrapAround: true,
+    percentPosition: false,
+    autoPlay: 5000,
+    groupCells: 1,
+    prevNextButtons: false,
+    pageDots: true,
+    selectedAttraction: 0.002,
+    friction: 0.08,
+  });
+  setTimeout(function () {
+    flkty.flickity("resize");
+  }, 100);
+
+  // Event handler for dragEnd
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+});
+//! products page carousel
+window.addEventListener("load", function () {
+  //  Initialize Flickity
+  var $carousel = $(".main-carousel").flickity({
+    cellAlign: "center", // Align cells to center
+    contain: true, // Contain cells within the carousel
+    wrapAround: true, // Loop through cells
+    percentPosition: false,
+    groupCells: false, // Ensure only one cell is shown at a time
+    prevNextButtons: true, // Show previous/next buttons
+    pageDots: false, // Hide dots
+    dragThreshold: 3, // Threshold for dragging
+    selectedAttraction: 0.002,
+    friction: 0.08,
+    autoPlay: 5000,
+  });
+  setTimeout(function () {
+    $carousel.flickity("resize");
+  }, 100);
+  // Autoplay resume after dragging ends
+  var flkty = $carousel.data("flickity");
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+
+  // Set total slides count
+  var totalSlides = $carousel.find(".carousel-cell").length;
+  $("#totalSlides").text(formatNumber(totalSlides));
+
+  // Update the current slide count when the slide changes
+  $carousel.on("select.flickity", function () {
+    var currentSlide = flkty.selectedIndex + 1; // Add 1 because Flickity is 0-based
+    $("#currentSlide").text(formatNumber(currentSlide));
+  });
+
+  // Format number to ensure double digits
+  function formatNumber(num) {
+    return num < 10 ? "0" + num : num.toString();
+  }
+});
+//! brands page carousel
+window.addEventListener("load", function () {
+  // Initialize Flickity
+  var $carousel = $(".main-carousel2").flickity({
+    cellAlign: "left",
+    wrapAround: true,
+    contain: true,
+    percentPosition: false,
+    prevNextButtons: true,
+    pageDots: false,
+    selectedAttraction: 0.025,
+    friction: 0.8,
+    autoPlay: true,
+    groupCells: true,
+    adaptiveHeight: true,
+  });
+  setTimeout(function () {
+    $carousel.flickity("resize");
+  }, 100);
+  var flkty = $carousel.data("flickity");
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+
+  // Set total slides count
+  var totalSlides = $(".brand-top-section .carousel-cell").length;
+  $("#totalSlides2").text(flickityFormatNumber(totalSlides));
+
+  // Start slide from 2 for aesthetic purposes
+  updateCurrentSlide2();
+
+  // Update current slide on slide change
+  $carousel.on("select.flickity", updateCurrentSlide2);
+
+  function updateCurrentSlide2() {
+    var flkty = $carousel.data("flickity");
+    var currentSlide = flkty.selectedIndex + 2; // Start from 2 instead of 1
+
+    // Ensure the number doesn't exceed the total slides
+    if (currentSlide > totalSlides) {
+      currentSlide = currentSlide - totalSlides; // Wrap around if it exceeds
+    }
+
+    $("#currentSlide2").text(flickityFormatNumber(currentSlide));
+  }
+
+  function flickityFormatNumber(num) {
+    return num < 10 ? "0" + num : num;
+  }
+});
+
+window.addEventListener("load", function () {
+  // Initialize Flickity
+  var $carousel3 = $(".collage-carousel").flickity({
+    cellAlign: "left",
+    wrapAround: true,
+    contain: true,
+    prevNextButtons: true,
+    pageDots: false,
+    percentPosition: false,
+    selectedAttraction: 0.002,
+    friction: 0.08,
+    autoPlay: 5000,
+    groupCells: true,
+    adaptiveHeight: true,
+  });
+  setTimeout(function () {
+    $carousel3.flickity("resize");
+  }, 100);
+
+  var flkty = $carousel3.data("flickity");
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+  // Set total slides count
+  var totalSlides3 = $(".brand-collage-carousel .carousel-cell").length;
+  $("#totalSlides3").text(flickityFormatNumber3(totalSlides3));
+
+  // Start slide from 2 for aesthetic purposes
+  updateCurrentSlide3();
+
+  // Update current slide on slide change
+  $carousel3.on("select.flickity", updateCurrentSlide3);
+
+  function updateCurrentSlide3() {
+    var flkty3 = $carousel3.data("flickity"); // Correctly use $carousel3
+    var currentSlide3 = flkty3.selectedIndex + 2; // Start from 2 instead of 1
+
+    // Ensure the number doesn't exceed the total slides
+    if (currentSlide3 > totalSlides3) {
+      currentSlide3 = currentSlide3 - totalSlides3; // Wrap around if it exceeds
+    }
+
+    $("#currentSlide3").text(flickityFormatNumber3(currentSlide3));
+  }
+
+  function flickityFormatNumber3(num) {
+    return num < 10 ? "0" + num : num;
+  }
+});
+window.addEventListener("load", function () {
+  // Initialize Flickity
+  var $carousel4 = $(".carousel-big").flickity({
+    cellAlign: "left",
+    wrapAround: true,
+    contain: true,
+    prevNextButtons: true,
+    percentPosition: false,
+    pageDots: false,
+    selectedAttraction: 0.002,
+    friction: 0.08,
+    autoPlay: 5000,
+    groupCells: true,
+    adaptiveHeight: true,
+  });
+  setTimeout(function () {
+    $carousel4.flickity("resize");
+  }, 100);
+
+  var flkty = $carousel4.data("flickity");
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+  // Set total slides count
+  var totalSlides4 = $(".brand-bottom-section .carousel-cell").length;
+  $("#totalSlides4").text(flickityFormatNumber4(totalSlides4));
+
+  // Start slide from 2 for aesthetic purposes
+  updateCurrentSlide4();
+
+  // Update current slide on slide change
+  $carousel4.on("select.flickity", updateCurrentSlide4);
+
+  function updateCurrentSlide4() {
+    var flkty4 = $carousel4.data("flickity"); // Correctly use $carousel3
+    var currentSlide4 = flkty4.selectedIndex + 2; // Start from 2 instead of 1
+
+    // Ensure the number doesn't exceed the total slides
+    if (currentSlide4 > totalSlides4) {
+      currentSlide4 = currentSlide4 - totalSlides4; // Wrap around if it exceeds
+    }
+
+    $("#currentSlide4").text(flickityFormatNumber4(currentSlide4));
+  }
+
+  function flickityFormatNumber4(num) {
+    return num < 10 ? "0" + num : num;
+  }
+});
+//! images carousel
+document.addEventListener("DOMContentLoaded", function () {
+  const swiper = new Swiper(".swiper-container", {
+    slidesPerView: 1,
+    loop: true,
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    initialSlide: 1,
+    spaceBetween: 0,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 600,
+      modifier: 0.5,
+      slideShadows: false,
+    },
+    speed: 2000, // 2 seconds for a smooth transition
+    easing: "ease-in-out", // Smooth easing effect
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  const currentSlideElement = document.querySelector(".current-slide");
+  const totalSlidesElement = document.querySelector(".total-slides");
+
+  // Function to format slide numbers
+  const swiperFormatNumber = (num) => (num < 10 ? `0${num}` : num.toString());
+
+  // Function to update slide count with debounce
+  const updateSlideCount = () => {
+    currentSlideElement.textContent = swiperFormatNumber(swiper.realIndex + 1);
+
+    // Calculate the actual total slides (excluding duplicated slides for looping)
+    const totalSlides = swiper.slides.length - swiper.loopedSlides * 2;
+    totalSlidesElement.textContent = swiperFormatNumber(totalSlides);
+  };
+
+  // Debounce utility function
+  const debounce = (func, delay) => {
+    let timeout;
+    return function () {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), delay);
+    };
+  };
+
+  const debouncedUpdateSlideCount = debounce(updateSlideCount, 100); // 100ms delay
+
+  // Initialize slide count on page load
+  updateSlideCount();
+
+  // Update slide count on slide change with debounce
+  swiper.on("slideChange", debouncedUpdateSlideCount);
+});
+
+window.addEventListener("load", function () {
+  // Initialize Flickity once DOM is fully rendered
+  var $carousel = $(".main-carousel").flickity({
+    cellAlign: "left",
+    wrapAround: true,
+    contain: true,
+    prevNextButtons: true,
+    percentPosition: false,
+    pageDots: false,
+    selectedAttraction: 0.002,
+    friction: 0.08,
+    autoPlay: 5000,
+    groupCells: true,
+    adaptiveHeight: true,
+  });
+  setTimeout(function () {
+    $carousel.flickity("resize");
+  }, 100);
+
+  // Set total slides count and other functionality
+  var flkty = $carousel.data("flickity");
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+
+  var totalSlides = $carousel.find(".carousel-cell").length;
+  $("#totalSlides").text(flickityFormatNumber(totalSlides));
+  updateCurrentSlide2();
+
+  $carousel.on("select.flickity", updateCurrentSlide2);
+
+  function updateCurrentSlide2() {
+    var flkty2 = $carousel.data("flickity");
+    var currentSlide2 = flkty2.selectedIndex + 2; // Start from 2 instead of 1
+
+    if (currentSlide2 > totalSlides) {
+      currentSlide2 = currentSlide2 - totalSlides;
+    }
+
+    $("#currentSlide").text(flickityFormatNumber(currentSlide2));
+  }
+
+  function flickityFormatNumber(num) {
+    return num < 10 ? "0" + num : num;
+  }
+});
+window.addEventListener("load", function () {
+  // Initialize Flickity
+  var $carousel = $(".main-carousel2").flickity({
+    cellAlign: "left",
+    wrapAround: true,
+    contain: true,
+    prevNextButtons: true,
+    pageDots: false,
+    percentPosition: false,
+    selectedAttraction: 0.002,
+    friction: 0.08,
+    autoPlay: 5000,
+    groupCells: true,
+    adaptiveHeight: true,
+  });
+  var flkty = $carousel.data("flickity");
+  flkty.on("dragEnd", function () {
+    console.log("Autoplay resumed after drag");
+    flkty.player.play();
+  });
+  // Set total slides count
+  var totalSlides = $carousel.find(".carousel-cell").length;
+  $("#totalSlides2").text(flickityFormatNumber(totalSlides));
+
+  // Start slide from 2 for aesthetic purposes
+  updateCurrentSlide2();
+
+  // Update current slide on slide change
+  $carousel.on("select.flickity", updateCurrentSlide2);
+
+  function updateCurrentSlide2() {
+    var flkty = $carousel.data("flickity");
+    var currentSlide = flkty.selectedIndex + 2; // Start from 2 instead of 1
+
+    // Ensure the number doesn't exceed the total slides
+    if (currentSlide > totalSlides) {
+      currentSlide = currentSlide - totalSlides; // Wrap around if it exceeds
+    }
+
+    $("#currentSlide2").text(flickityFormatNumber(currentSlide));
+  }
+
+  function flickityFormatNumber(num) {
+    return num < 10 ? "0" + num : num;
+  }
+});

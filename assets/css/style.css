@@ -790,6 +790,11 @@ nav ul li a.active::after {
   position: absolute;
   bottom: 20px;
   right: 30px;
+  transition: all 0.5s ease;
+}
+.project-mid-section .image-body button:hover {
+  scale: 1.1;
+  transform: translateY(-10px);
 }
 .project-mid-section p {
   text-align: right;
@@ -1767,7 +1772,7 @@ nav ul li a.active::after {
   width: fit-content;
   height: auto;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.7s ease;
 }
 .about-section.news-latest.feature .data-container .arrow-btn-container img:hover {
   transform: translateX(20px) scale(1.1);

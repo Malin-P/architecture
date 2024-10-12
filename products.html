@@ -268,52 +268,9 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="assets/js/script.js" defer></script>
     <script
       src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
       defer></script>
-    <script>
-      window.addEventListener("load", function () {
-        //  Initialize Flickity
-        var $carousel = $(".main-carousel").flickity({
-          cellAlign: "center", // Align cells to center
-          contain: true, // Contain cells within the carousel
-          wrapAround: true, // Loop through cells
-          percentPosition: false,
-          groupCells: false, // Ensure only one cell is shown at a time
-          prevNextButtons: true, // Show previous/next buttons
-          pageDots: false, // Hide dots
-          dragThreshold: 3, // Threshold for dragging
-          freeScroll: false, // Disable free scroll
-          selectedAttraction: 0.002,
-          friction: 0.08,
-          autoPlay: 5000,
-        });
-        setTimeout(function () {
-          $carousel.flickity("resize");
-        }, 100);
-        // Autoplay resume after dragging ends
-        var flkty = $carousel.data("flickity");
-        flkty.on("dragEnd", function () {
-          console.log("Autoplay resumed after drag");
-          flkty.player.play();
-        });
-
-        // Set total slides count
-        var totalSlides = $carousel.find(".carousel-cell").length;
-        $("#totalSlides").text(formatNumber(totalSlides));
-
-        // Update the current slide count when the slide changes
-        $carousel.on("select.flickity", function () {
-          var currentSlide = flkty.selectedIndex + 1; // Add 1 because Flickity is 0-based
-          $("#currentSlide").text(formatNumber(currentSlide));
-        });
-
-        // Format number to ensure double digits
-        function formatNumber(num) {
-          return num < 10 ? "0" + num : num.toString();
-        }
-      });
-    </script>
+    <script src="assets/js/script.js" defer></script>
   </body>
 </html>
