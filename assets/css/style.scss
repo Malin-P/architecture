@@ -1303,8 +1303,14 @@ nav {
     height: 60%;
     margin-left: auto;
     margin-right: auto;
+    will-change: transform;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    backface-visibility: hidden;
   }
   .swiper-slide {
+    backface-visibility: hidden;
+    transform: translateZ(0);
     text-align: center;
     font-size: 18px;
     background: #fff;

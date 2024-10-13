@@ -97,10 +97,10 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
         <div class="slide-count">
-          <span class="current-slide">01</span>
+          <span class="current-slide" id="current-slide-swiper">01</span>
           <br />
           /
-          <span class="total-slides">10</span>
+          <span class="total-slides" id="total-slides-swiper">10</span>
         </div>
       </div>
     </section>
@@ -120,7 +120,7 @@
     </section>
     <section class="carousel-image-section">
       <div class="carousel-section">
-        <div class="main-carousel">
+        <div class="main-carousel" id="carousel3">
           <div class="carousel-cell">
             <div class="image-container">
               <img src="assets/images/images_carousel1.jpg" alt="building" />
@@ -173,10 +173,10 @@
           </div>
         </div>
         <div class="carousel-counter">
-          <span id="currentSlide">02</span>
+          <span id="currentSlide" class="current-slide">02</span>
           <br />
           /
-          <span id="totalSlides">10</span>
+          <span id="totalSlides" class="total-slides">10</span>
         </div>
       </div>
       <div class="image-section">
@@ -201,7 +201,7 @@
     </section>
     <section class="images-big-carousel">
       <div class="carousel-container">
-        <div class="main-carousel2">
+        <div class="main-carousel2" id="carousel4">
           <div class="carousel-cell">
             <div class="image-container">
               <img src="assets/images/images-big-carousel.jpg" alt="building" />
@@ -314,10 +314,10 @@
           </div>
         </div>
         <div class="carousel-counter">
-          <span id="currentSlide2">02</span>
+          <span id="currentSlide2" class="current-slide">02</span>
           <br />
           /
-          <span id="totalSlides2">10</span>
+          <span id="totalSlides2" class="total-slides">10</span>
         </div>
       </div>
       <span class="interactive">GALLERY</span>
@@ -396,10 +396,9 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://unpkg.com/swiper@7.0.6/swiper-bundle.min.js"></script>
-    <script
-      src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"
-      defer></script>
+
     <script src="assets/js/script.js" defer></script>
   </body>
 </html>

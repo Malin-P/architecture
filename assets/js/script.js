@@ -193,10 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // Count-Up Animation
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Script is running after DOM is loaded");
-
   const countUpElements = document.querySelectorAll(".count-up");
-  console.log("Count-up elements:", countUpElements); // Log the selected elements
 
   const formatNumber = (num) =>
     num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -227,7 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const finalCount = parseInt(entry.target.dataset.count);
-          console.log("Element is visible:", entry.target);
 
           if (!isNaN(finalCount)) {
             animateCount(entry.target, finalCount);
@@ -646,226 +642,111 @@ document.addEventListener("DOMContentLoaded", () => {
     observerVerticalText.observe(targetElementVerticalText);
   }
 });
-//!index page carousel
 
-window.addEventListener("load", function () {
-  var flkty = $("main-carousel").flickity({
-    cellAlign: "center",
-    contain: true,
-    wrapAround: true,
-    percentPosition: false,
-    autoPlay: 5000,
-    groupCells: 1,
-    prevNextButtons: false,
-    pageDots: true,
-    selectedAttraction: 0.002,
-    friction: 0.08,
+//!modularized carousel
+// Function to initialize Flickity carousel
+function initializeCarousel(
+  carouselSelector,
+  slideStartOffset = 1,
+  dots = true,
+  autoplay = 5000,
+  prevNextButtons = false
+) {
+  const $carousel = $(carouselSelector);
+
+  // Check if the carousel element exists in the DOM
+  if ($carousel.length === 0) {
+    console.error("Carousel element not found for", carouselSelector);
+    return;
+  }
+
+  // Initialize Flickity and trigger ready event
+  const flkty = $carousel
+    .flickity({
+      cellAlign: "left",
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: prevNextButtons,
+      percentPosition: false,
+      pageDots: dots,
+      selectedAttraction: 0.002,
+      friction: 0.08,
+      autoPlay: autoplay,
+      groupCells: true,
+      adaptiveHeight: true,
+    })
+    .data("flickity"); // Ensure Flickity instance is retrieved
+
+  // Check if Flickity instance was initialized correctly
+  if (!flkty) {
+    console.error("Flickity initialization failed for", carouselSelector);
+    return;
+  }
+
+  // Update the carousel counter after Flickity settles
+  $carousel.on("settle.flickity", () => {
+    updateCarouselCounter($carousel, flkty, slideStartOffset);
   });
-  setTimeout(function () {
-    flkty.flickity("resize");
-  }, 100);
 
-  // Event handler for dragEnd
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
+  // Event to resume autoplay after dragging
+  $carousel.on("dragEnd.flickity", () => {
     flkty.player.play();
   });
-});
-//! products page carousel
-window.addEventListener("load", function () {
-  //  Initialize Flickity
-  var $carousel = $(".main-carousel").flickity({
-    cellAlign: "center", // Align cells to center
-    contain: true, // Contain cells within the carousel
-    wrapAround: true, // Loop through cells
-    percentPosition: false,
-    groupCells: false, // Ensure only one cell is shown at a time
-    prevNextButtons: true, // Show previous/next buttons
-    pageDots: false, // Hide dots
-    dragThreshold: 3, // Threshold for dragging
-    selectedAttraction: 0.002,
-    friction: 0.08,
-    autoPlay: 5000,
+
+  // Update current slide on selection change
+  $carousel.on("select.flickity", () => {
+    updateCarouselCounter($carousel, flkty, slideStartOffset);
   });
-  setTimeout(function () {
+
+  // Resize the carousel after initialization
+  setTimeout(() => {
     $carousel.flickity("resize");
   }, 100);
-  // Autoplay resume after dragging ends
-  var flkty = $carousel.data("flickity");
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
-    flkty.player.play();
+}
+
+// Function to update the carousel counter
+function updateCarouselCounter($carousel, flkty, startOffset) {
+  const currentSlide = flkty.selectedIndex + startOffset; // Start from given offset
+  const totalSlides = $carousel.find(".carousel-cell").length;
+
+  // Handle wrapping
+  let displaySlide =
+    currentSlide > totalSlides ? currentSlide - totalSlides : currentSlide;
+
+  const currentSlideElem = $carousel
+    .siblings(".carousel-counter")
+    .find(".current-slide");
+  currentSlideElem.text(formatNumber(displaySlide));
+
+  const totalSlideElem = $carousel
+    .siblings(".carousel-counter")
+    .find(".total-slides");
+  totalSlideElem.text(formatNumber(totalSlides));
+}
+
+// Function to format slide number
+function formatNumber(num) {
+  return num < 10 ? "0" + num : num;
+}
+
+// Wait for the window to load before initializing carousels
+window.addEventListener("load", () => {
+  const carouselSelectors = [
+    "#carousel1",
+    "#carousel2",
+    "#carousel3",
+    "#carousel4",
+    "#carousel5",
+    "#carousel6",
+    "#carousel7",
+  ];
+
+  carouselSelectors.forEach((selector) => {
+    initializeCarousel(selector, 2, true, 5000, true);
   });
-
-  // Set total slides count
-  var totalSlides = $carousel.find(".carousel-cell").length;
-  $("#totalSlides").text(formatNumber(totalSlides));
-
-  // Update the current slide count when the slide changes
-  $carousel.on("select.flickity", function () {
-    var currentSlide = flkty.selectedIndex + 1; // Add 1 because Flickity is 0-based
-    $("#currentSlide").text(formatNumber(currentSlide));
-  });
-
-  // Format number to ensure double digits
-  function formatNumber(num) {
-    return num < 10 ? "0" + num : num.toString();
-  }
-});
-//! brands page carousel
-window.addEventListener("load", function () {
-  // Initialize Flickity
-  var $carousel = $(".main-carousel2").flickity({
-    cellAlign: "left",
-    wrapAround: true,
-    contain: true,
-    percentPosition: false,
-    prevNextButtons: true,
-    pageDots: false,
-    selectedAttraction: 0.025,
-    friction: 0.8,
-    autoPlay: true,
-    groupCells: true,
-    adaptiveHeight: true,
-  });
-  setTimeout(function () {
-    $carousel.flickity("resize");
-  }, 100);
-  var flkty = $carousel.data("flickity");
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
-    flkty.player.play();
-  });
-
-  // Set total slides count
-  var totalSlides = $(".brand-top-section .carousel-cell").length;
-  $("#totalSlides2").text(flickityFormatNumber(totalSlides));
-
-  // Start slide from 2 for aesthetic purposes
-  updateCurrentSlide2();
-
-  // Update current slide on slide change
-  $carousel.on("select.flickity", updateCurrentSlide2);
-
-  function updateCurrentSlide2() {
-    var flkty = $carousel.data("flickity");
-    var currentSlide = flkty.selectedIndex + 2; // Start from 2 instead of 1
-
-    // Ensure the number doesn't exceed the total slides
-    if (currentSlide > totalSlides) {
-      currentSlide = currentSlide - totalSlides; // Wrap around if it exceeds
-    }
-
-    $("#currentSlide2").text(flickityFormatNumber(currentSlide));
-  }
-
-  function flickityFormatNumber(num) {
-    return num < 10 ? "0" + num : num;
-  }
-});
-
-window.addEventListener("load", function () {
-  // Initialize Flickity
-  var $carousel3 = $(".collage-carousel").flickity({
-    cellAlign: "left",
-    wrapAround: true,
-    contain: true,
-    prevNextButtons: true,
-    pageDots: false,
-    percentPosition: false,
-    selectedAttraction: 0.002,
-    friction: 0.08,
-    autoPlay: 5000,
-    groupCells: true,
-    adaptiveHeight: true,
-  });
-  setTimeout(function () {
-    $carousel3.flickity("resize");
-  }, 100);
-
-  var flkty = $carousel3.data("flickity");
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
-    flkty.player.play();
-  });
-  // Set total slides count
-  var totalSlides3 = $(".brand-collage-carousel .carousel-cell").length;
-  $("#totalSlides3").text(flickityFormatNumber3(totalSlides3));
-
-  // Start slide from 2 for aesthetic purposes
-  updateCurrentSlide3();
-
-  // Update current slide on slide change
-  $carousel3.on("select.flickity", updateCurrentSlide3);
-
-  function updateCurrentSlide3() {
-    var flkty3 = $carousel3.data("flickity"); // Correctly use $carousel3
-    var currentSlide3 = flkty3.selectedIndex + 2; // Start from 2 instead of 1
-
-    // Ensure the number doesn't exceed the total slides
-    if (currentSlide3 > totalSlides3) {
-      currentSlide3 = currentSlide3 - totalSlides3; // Wrap around if it exceeds
-    }
-
-    $("#currentSlide3").text(flickityFormatNumber3(currentSlide3));
-  }
-
-  function flickityFormatNumber3(num) {
-    return num < 10 ? "0" + num : num;
-  }
-});
-window.addEventListener("load", function () {
-  // Initialize Flickity
-  var $carousel4 = $(".carousel-big").flickity({
-    cellAlign: "left",
-    wrapAround: true,
-    contain: true,
-    prevNextButtons: true,
-    percentPosition: false,
-    pageDots: false,
-    selectedAttraction: 0.002,
-    friction: 0.08,
-    autoPlay: 5000,
-    groupCells: true,
-    adaptiveHeight: true,
-  });
-  setTimeout(function () {
-    $carousel4.flickity("resize");
-  }, 100);
-
-  var flkty = $carousel4.data("flickity");
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
-    flkty.player.play();
-  });
-  // Set total slides count
-  var totalSlides4 = $(".brand-bottom-section .carousel-cell").length;
-  $("#totalSlides4").text(flickityFormatNumber4(totalSlides4));
-
-  // Start slide from 2 for aesthetic purposes
-  updateCurrentSlide4();
-
-  // Update current slide on slide change
-  $carousel4.on("select.flickity", updateCurrentSlide4);
-
-  function updateCurrentSlide4() {
-    var flkty4 = $carousel4.data("flickity"); // Correctly use $carousel3
-    var currentSlide4 = flkty4.selectedIndex + 2; // Start from 2 instead of 1
-
-    // Ensure the number doesn't exceed the total slides
-    if (currentSlide4 > totalSlides4) {
-      currentSlide4 = currentSlide4 - totalSlides4; // Wrap around if it exceeds
-    }
-
-    $("#currentSlide4").text(flickityFormatNumber4(currentSlide4));
-  }
-
-  function flickityFormatNumber4(num) {
-    return num < 10 ? "0" + num : num;
-  }
 });
 //! images carousel
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", () => {
   const swiper = new Swiper(".swiper-container", {
     slidesPerView: 1,
     loop: true,
@@ -901,11 +782,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to update slide count with debounce
   const updateSlideCount = () => {
-    currentSlideElement.textContent = swiperFormatNumber(swiper.realIndex + 1);
-
-    // Calculate the actual total slides (excluding duplicated slides for looping)
-    const totalSlides = swiper.slides.length - swiper.loopedSlides * 2;
-    totalSlidesElement.textContent = swiperFormatNumber(totalSlides);
+    requestAnimationFrame(() => {
+      currentSlideElement.textContent = swiperFormatNumber(
+        swiper.realIndex + 1
+      );
+      const totalSlides = swiper.slides.length - swiper.loopedSlides * 2;
+      totalSlidesElement.textContent = swiperFormatNumber(totalSlides);
+    });
   };
 
   // Debounce utility function
@@ -926,98 +809,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Update slide count on slide change with debounce
   swiper.on("slideChange", debouncedUpdateSlideCount);
-});
-
-window.addEventListener("load", function () {
-  // Initialize Flickity once DOM is fully rendered
-  var $carousel = $(".main-carousel").flickity({
-    cellAlign: "left",
-    wrapAround: true,
-    contain: true,
-    prevNextButtons: true,
-    percentPosition: false,
-    pageDots: false,
-    selectedAttraction: 0.002,
-    friction: 0.08,
-    autoPlay: 5000,
-    groupCells: true,
-    adaptiveHeight: true,
-  });
-  setTimeout(function () {
-    $carousel.flickity("resize");
-  }, 100);
-
-  // Set total slides count and other functionality
-  var flkty = $carousel.data("flickity");
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
-    flkty.player.play();
-  });
-
-  var totalSlides = $carousel.find(".carousel-cell").length;
-  $("#totalSlides").text(flickityFormatNumber(totalSlides));
-  updateCurrentSlide2();
-
-  $carousel.on("select.flickity", updateCurrentSlide2);
-
-  function updateCurrentSlide2() {
-    var flkty2 = $carousel.data("flickity");
-    var currentSlide2 = flkty2.selectedIndex + 2; // Start from 2 instead of 1
-
-    if (currentSlide2 > totalSlides) {
-      currentSlide2 = currentSlide2 - totalSlides;
-    }
-
-    $("#currentSlide").text(flickityFormatNumber(currentSlide2));
-  }
-
-  function flickityFormatNumber(num) {
-    return num < 10 ? "0" + num : num;
-  }
-});
-window.addEventListener("load", function () {
-  // Initialize Flickity
-  var $carousel = $(".main-carousel2").flickity({
-    cellAlign: "left",
-    wrapAround: true,
-    contain: true,
-    prevNextButtons: true,
-    pageDots: false,
-    percentPosition: false,
-    selectedAttraction: 0.002,
-    friction: 0.08,
-    autoPlay: 5000,
-    groupCells: true,
-    adaptiveHeight: true,
-  });
-  var flkty = $carousel.data("flickity");
-  flkty.on("dragEnd", function () {
-    console.log("Autoplay resumed after drag");
-    flkty.player.play();
-  });
-  // Set total slides count
-  var totalSlides = $carousel.find(".carousel-cell").length;
-  $("#totalSlides2").text(flickityFormatNumber(totalSlides));
-
-  // Start slide from 2 for aesthetic purposes
-  updateCurrentSlide2();
-
-  // Update current slide on slide change
-  $carousel.on("select.flickity", updateCurrentSlide2);
-
-  function updateCurrentSlide2() {
-    var flkty = $carousel.data("flickity");
-    var currentSlide = flkty.selectedIndex + 2; // Start from 2 instead of 1
-
-    // Ensure the number doesn't exceed the total slides
-    if (currentSlide > totalSlides) {
-      currentSlide = currentSlide - totalSlides; // Wrap around if it exceeds
-    }
-
-    $("#currentSlide2").text(flickityFormatNumber(currentSlide));
-  }
-
-  function flickityFormatNumber(num) {
-    return num < 10 ? "0" + num : num;
-  }
 });
