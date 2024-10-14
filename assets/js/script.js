@@ -645,6 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //!modularized carousel
 // Function to initialize Flickity carousel
+// Function to initialize the carousel
 function initializeCarousel(
   carouselSelector,
   slideStartOffset = 1,
@@ -654,13 +655,11 @@ function initializeCarousel(
 ) {
   const $carousel = $(carouselSelector);
 
-  // Check if the carousel element exists in the DOM
   if ($carousel.length === 0) {
     console.error("Carousel element not found for", carouselSelector);
     return;
   }
 
-  // Initialize Flickity and trigger ready event
   const flkty = $carousel
     .flickity({
       cellAlign: "left",
@@ -675,58 +674,28 @@ function initializeCarousel(
       groupCells: true,
       adaptiveHeight: true,
     })
-    .data("flickity"); // Ensure Flickity instance is retrieved
+    .data("flickity");
 
-  // Check if Flickity instance was initialized correctly
   if (!flkty) {
     console.error("Flickity initialization failed for", carouselSelector);
     return;
   }
 
-  // Update the carousel counter after Flickity settles
   $carousel.on("settle.flickity", () => {
     updateCarouselCounter($carousel, flkty, slideStartOffset);
   });
 
-  // Event to resume autoplay after dragging
   $carousel.on("dragEnd.flickity", () => {
     flkty.player.play();
   });
 
-  // Update current slide on selection change
   $carousel.on("select.flickity", () => {
     updateCarouselCounter($carousel, flkty, slideStartOffset);
   });
 
-  // Resize the carousel after initialization
   setTimeout(() => {
     $carousel.flickity("resize");
   }, 100);
-}
-
-// Function to update the carousel counter
-function updateCarouselCounter($carousel, flkty, startOffset) {
-  const currentSlide = flkty.selectedIndex + startOffset; // Start from given offset
-  const totalSlides = $carousel.find(".carousel-cell").length;
-
-  // Handle wrapping
-  let displaySlide =
-    currentSlide > totalSlides ? currentSlide - totalSlides : currentSlide;
-
-  const currentSlideElem = $carousel
-    .siblings(".carousel-counter")
-    .find(".current-slide");
-  currentSlideElem.text(formatNumber(displaySlide));
-
-  const totalSlideElem = $carousel
-    .siblings(".carousel-counter")
-    .find(".total-slides");
-  totalSlideElem.text(formatNumber(totalSlides));
-}
-
-// Function to format slide number
-function formatNumber(num) {
-  return num < 10 ? "0" + num : num;
 }
 
 // Wait for the window to load before initializing carousels
@@ -742,7 +711,9 @@ window.addEventListener("load", () => {
   ];
 
   carouselSelectors.forEach((selector) => {
-    initializeCarousel(selector, 2, true, 5000, true);
+    const prevNextButtons = selector === "#carousel1" ? false : true;
+
+    initializeCarousel(selector, 2, true, 5000, prevNextButtons);
   });
 });
 //! images carousel
