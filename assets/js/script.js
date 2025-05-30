@@ -1,3 +1,16 @@
+//* navbar toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const trigger = document.querySelector(".navbar-toggle");
+  trigger.addEventListener("click", function () {
+    trigger.classList.toggle("collapsed");
+    const target = document.querySelector(this.getAttribute("data-target"));
+    target.classList.toggle("show"); // Toggles the "show" class
+    const backgroundBlur = document.querySelector(".background-blur");
+    backgroundBlur.classList.toggle("show");
+  });
+});
+
+//* navbar toggle end
 //* mouse cursor animation
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -645,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //!modularized carousel
 // Function to initialize Flickity carousel
-// Function to initialize the carousel
+
 function initializeCarousel(
   carouselSelector,
   slideStartOffset = 1,
@@ -675,7 +688,7 @@ function initializeCarousel(
       adaptiveHeight: true,
     })
     .data("flickity");
-
+  console.log("flkty", flkty);
   if (!flkty) {
     console.error("Flickity initialization failed for", carouselSelector);
     return;
@@ -697,7 +710,32 @@ function initializeCarousel(
     $carousel.flickity("resize");
   }, 100);
 }
+function updateCarouselCounter($carousel, flkty, startOffset) {
+  console.log("Updating current slide", $carousel, flkty, startOffset);
+  const currentSlide = flkty.selectedIndex + startOffset; // Start from given offset
+  const totalSlides = $carousel.find(".carousel-cell").length;
 
+  // Handle wrapping
+  let displaySlide =
+    currentSlide > totalSlides ? currentSlide - totalSlides : currentSlide;
+
+  const currentSlideElem = $carousel
+    .siblings(".carousel-counter")
+    .find(".current-slide");
+  currentSlideElem.text(formatNumber(displaySlide));
+
+  const totalSlideElem = $carousel
+    .siblings(".carousel-counter")
+    .find(".total-slides");
+  totalSlideElem.text(formatNumber(totalSlides));
+
+  console.log("Current slide updated:", currentSlideElem);
+}
+
+// Function to format slide number
+function formatNumber(num) {
+  return num < 10 ? "0" + num : num;
+}
 // Wait for the window to load before initializing carousels
 window.addEventListener("load", () => {
   const carouselSelectors = [
